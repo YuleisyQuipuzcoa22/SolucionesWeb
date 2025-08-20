@@ -12,7 +12,7 @@
     <body>
 
 
-        <h1>Ingresa tu notita</h1>
+        <h1>Ingresa tu notita-by yule</h1>
         <form action="svNotas" method="POST">
             <div class="mb-3">
                 <label class="form-label" >Título</label>

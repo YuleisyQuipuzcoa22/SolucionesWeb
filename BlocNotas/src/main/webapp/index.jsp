@@ -66,5 +66,15 @@
         <%            }
         %> 
         
+        <%
+            String errorMsg = (String) session.getAttribute("error");
+            if(errorMsg != null){
+        %>
+        
+            <div class ="alert alert-danger"><%= errorMsg%></div>
+        <%
+            session.removeAttribute("Error");
+            }
+        %>
     </body>
 </html>

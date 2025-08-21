@@ -1,4 +1,8 @@
+Logica\NotaFactory.class
 com\mycompany\blocnotas\JakartaRestConfiguration.class
+Logica\RepositorioNotas$Holder.class
+Logica\RepositorioNotas.class
+Logica\RepositorioNotas$1.class
 Logica\Nota.class
 com\mycompany\blocnotas\resources\JakartaEE8Resource.class
 com\mycompany\blocnotas\servlets\svNotas.class

@@ -11,7 +11,6 @@
     </head>
     <body>
 
-
         <h1>Ingresa tu notita</h1>
         <form action="svNotas" method="POST">
             <div class="mb-3">
@@ -21,8 +20,19 @@
             <div class="mb-3"> 
                 <label class="form-label">Contenido</label> 
                 <textarea  class="form-control" rows="3" name = "contenido"></textarea>
+            </div
+            
+            <div class="mb-3">
+                <label class="form-label">TIPO DE NOTA</label>
+                <select ckass ="form-select" name="tipo">
+                    <option value="normal">NORMAL</option>
+                    <option value="importante">IMPORTANTE</option>
+                    <option value="recordatorio">RECORDATORIO</option>
+                </select>
             </div>
+            
             <button type= "submit" class="btn btn-primary"> Enviar</button>
+        
         </form>    
 
         <h1>Lista de notas</h1>
@@ -55,5 +65,6 @@
         <div class="alert alert-warning">No hay notas guardadas</div>
         <%            }
         %> 
+        
     </body>
 </html>

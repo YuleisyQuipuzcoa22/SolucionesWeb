@@ -1,6 +1,12 @@
 <%@page import="java.util.List"%>
 <%@page import="Logica.Nota"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
+<%@ page import="java.time.format.DateTimeFormatter" %>
+
+<%
+    DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm");
+%>
+
 <!DOCTYPE html>
 <html>
     <head>
@@ -15,15 +21,13 @@
         <nav class="navbar navbar-expand-lg navbar-light px-3" 
              style="background-color: #563d7c;">
             <a class="navbar-brand d-flex align-items-center" href="#">
-                <!-- luego reemplazamos el texto por tu logo SVG -->
                 <img src="resources/textito.svg" alt="Logo" width="40" height="40" class="me-2">
             </a>
             <div class="ms-auto">
-                <!-- Botoncito que abre el modal -->
+                <!-- Botón que abre el modal -->
                 <button class="btn btn-secondary" data-bs-toggle="modal" data-bs-target="#modalNota">
                     <i class="bi bi-plus-circle me-1"></i> Nueva Nota
                 </button>
-
             </div>
         </nav>
 
@@ -43,8 +47,20 @@
                     <div class="card h-100 shadow-sm">
                         <div class="card-body">
                             <p><b>Nota n° <%=cont%></b></p>
-                            <h5 class="card-title"><%= note.getTitulo()%></h5>
+
+                            <h5 class="card-title">
+                                <%= note.getTitulo()%>
+                                <% if ("importante".equals(note.getCategoria())) { %>
+                                <i class="bi bi-exclamation-triangle-fill text-danger"></i>
+                                <% } else if ("recordatorio".equals(note.getCategoria())) { %>
+                                <i class="bi bi-alarm text-warning"></i>
+                                <% }%>
+                            </h5>
+
                             <p class="card-text"><%= note.getContenido()%></p>
+                        </div>
+                        <div class="card-footer text-muted text-start" style="font-size: 0.8em;">
+                            Publicado: <%= note.getFechaCreacion().format(formatter) %>
                         </div>
                     </div>
                 </div>
@@ -78,7 +94,7 @@
                             </div>
                             <div class="mb-3">
                                 <label class="form-label">Tipo de Nota</label>
-                                <select class="form-select" name="tipo">
+                                <select class="form-select" name="categoria">
                                     <option value="normal">NORMAL</option>
                                     <option value="importante">IMPORTANTE</option>
                                     <option value="recordatorio">RECORDATORIO</option>
@@ -94,7 +110,7 @@
             </div>
         </div>
 
-        <!-- Bootstrap JS (para modal) -->
+        <!-- Bootstrap JS -->
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
     </body>
 </html>

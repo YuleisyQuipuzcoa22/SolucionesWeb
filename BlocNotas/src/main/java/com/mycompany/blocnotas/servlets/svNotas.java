@@ -12,7 +12,7 @@ import javax.servlet.http.HttpSession;
 import Logica.Nota;
 import Logica.RepositorioNotas;
 
-@WebServlet(name = "svNotas", urlPatterns = {"/svNotas"})
+@WebServlet(name = "svNotas", urlPatterns = {"/svNotas"}) //Necesarios para el index
 public class svNotas extends HttpServlet {
 
     // Generado automaticamente
@@ -32,7 +32,6 @@ public class svNotas extends HttpServlet {
 
         misesion.setAttribute("listaNotas", listaNotas);
         response.sendRedirect("index.jsp");
-
     }
 
     @Override

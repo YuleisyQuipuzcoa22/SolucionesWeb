@@ -1,10 +1,12 @@
 package Logica;
+import java.time.LocalDateTime;
 
 public class Nota {
 
     private String titulo;
     private String contenido;
     private String categoria;
+    private LocalDateTime fechaCreacion;
 
     public Nota() {
     }
@@ -38,5 +40,13 @@ public class Nota {
 
     public void setCategoria(String categoria) {
         this.categoria = categoria;
+    }
+
+    public LocalDateTime getFechaCreacion() {
+        return fechaCreacion;
+    }
+
+    public void setFechaCreacion(LocalDateTime fechaCreacion) {
+        this.fechaCreacion = fechaCreacion;
     }
 }

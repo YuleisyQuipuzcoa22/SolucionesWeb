@@ -46,15 +46,19 @@
                 <div class="col-12 col-sm-6 col-md-4 col-lg-3">
                     <div class="card h-100 shadow-sm">
                         <div class="card-body">
-                            <p><b>Nota n° <%=cont%></b></p>
+                            <div class="d-flex justify-content-between align-items-center mb-2">
+                                <p class="mb-0"><b>Nota N° <%=cont%></b></p>
+                            <% if ("importante".equals(note.getCategoria())) { %>
+                                <i class="bi bi-exclamation-triangle-fill text-danger fs-3"></i>
+                                <% } else if ("recordatorio".equals(note.getCategoria())) { %>
+                                <i class="bi bi-alarm text-warning fs-3"></i>
+                                <% }%>
+                            </div>
+                            
 
                             <h5 class="card-title">
                                 <%= note.getTitulo()%>
-                                <% if ("importante".equals(note.getCategoria())) { %>
-                                <i class="bi bi-exclamation-triangle-fill text-danger"></i>
-                                <% } else if ("recordatorio".equals(note.getCategoria())) { %>
-                                <i class="bi bi-alarm text-warning"></i>
-                                <% }%>
+                                
                             </h5>
 
                             <p class="card-text"><%= note.getContenido()%></p>

@@ -1,7 +1,6 @@
 package com.mycompany.blocnotas.servlets;
 
 import java.io.IOException;
-import java.util.ArrayList;
 import java.util.List;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -14,11 +13,6 @@ import Logica.RepositorioNotas;
 
 @WebServlet(name = "svNotas", urlPatterns = {"/svNotas"}) //Necesarios para el index
 public class svNotas extends HttpServlet {
-
-    // Generado automaticamente
-    /* protected void processRequest(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException {      
-    }*/
     
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
@@ -44,7 +38,6 @@ public class svNotas extends HttpServlet {
         if (titulo == null || titulo.trim().isEmpty()
                 || contenido == null || contenido.trim().isEmpty()) {
 
-            request.getSession().setAttribute("error", "El título y contenido no pueden estar vacíos.");
             response.sendRedirect("index.jsp");
             return;
         }

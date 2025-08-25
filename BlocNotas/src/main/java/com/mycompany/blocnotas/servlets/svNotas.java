@@ -13,7 +13,8 @@ import Logica.RepositorioNotas;
 
 @WebServlet(name = "svNotas", urlPatterns = {"/svNotas"}) //Necesarios para el index
 public class svNotas extends HttpServlet {
-    
+
+    // --- GET: mostrar la lista ---
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
@@ -24,33 +25,34 @@ public class svNotas extends HttpServlet {
         RepositorioNotas repo = RepositorioNotas.getInstancia();
         List<Nota> listaNotas = repo.getNotas(sessionId);
 
-        misesion.setAttribute("listaNotas", listaNotas);
-        response.sendRedirect("index.jsp");
+        request.setAttribute("listaNotas", listaNotas);
+
+        request.getRequestDispatcher("index.jsp").forward(request, response);
     }
 
+    // --- POST ---
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+
         String titulo = request.getParameter("titulo");
         String contenido = request.getParameter("contenido");
         String categoria = request.getParameter("categoria");
 
         if (titulo == null || titulo.trim().isEmpty()
                 || contenido == null || contenido.trim().isEmpty()) {
-
-            response.sendRedirect("index.jsp");
+            response.sendRedirect("svNotas"); // redirige a GET
             return;
         }
-        Nota nuevaNota = Logica.NotaFactory.crearNota(titulo, contenido,categoria);
+
+        Nota nuevaNota = Logica.NotaFactory.crearNota(titulo, contenido, categoria);
 
         HttpSession misesion = request.getSession();
-        String sessionId = misesion.getId(); //identificador unico del usuario
+        String sessionId = misesion.getId();
         RepositorioNotas repo = RepositorioNotas.getInstancia();
         repo.agregarNota(sessionId, nuevaNota);
 
-        //Se guarda en la sesion para que el JSP lea la lista
-        misesion.setAttribute("listaNotas", repo.getNotas(sessionId));
-        response.sendRedirect("index.jsp");
+        response.sendRedirect("svNotas");
     }
 
     @Override

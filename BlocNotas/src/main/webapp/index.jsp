@@ -35,7 +35,8 @@
             <h2 class="mb-3">Notas Berlin</h2>
 
             <%
-                List<Nota> listaNotas = (List) request.getSession().getAttribute("listaNotas");
+                // Lee y recorre
+                List<Nota> listaNotas = (List) request.getAttribute("listaNotas");
                 if (listaNotas != null && !listaNotas.isEmpty()) {
             %>
             <div class="row g-3">
